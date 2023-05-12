@@ -3,7 +3,8 @@ const createPost = async (req, res) => {
   try {
     const post = new Post({
       title: req.body.title,
-      date: req.body.date,
+      desc: req.body.desc,
+      date:  new Date(),
       image: req.file.filename,
     });
 
@@ -43,22 +44,24 @@ const updatePost = async (req, res) => {
     if (req.file !== undefined) {
       var id = req.body.id;
       var title = req.body.title;
-      var date = req.body.date;
+      var desc = req.body.desc;
+      var date = new Date();
       var filename = req.file.filename;
 
       await Post.findByIdAndUpdate(
         { _id: id },
-        { $set: { title: title, date: date, image: filename } }
+        { $set: { title: title, desc:desc, date: date, image: filename } }
       );
       res.status(200).send({ success: true, msg: "Post updated Successfully" });
     } else {
       var id = req.body.id;
       var title = req.body.title;
-      var date = req.body.date;
+      var desc = req.body.desc;
+      var date = new Date();
 
       await Post.findByIdAndUpdate(
         { _id: id },
-        { $set: { title: title, date: date} }
+        { $set: { title: title, desc:desc,date: date} }
       );
       res.status(200).send({ success: true, msg: "Post updated Successfully" });
     }

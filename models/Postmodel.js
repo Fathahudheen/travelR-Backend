@@ -5,9 +5,14 @@ const postSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    date:{
+    desc:{
         type:String,
         required:true
+    },
+
+    date:{
+        type:String,
+        required:false
     },
     image:{
         type:String,
